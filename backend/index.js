@@ -9,7 +9,7 @@ app.use(express.json());
 const { Sequelize, DataTypes } = require('sequelize');
 
 //Koneksi Database 
-const sequelize = new Sequelize('profile-minuhu', 'root', '', {
+const sequelize = new Sequelize('profile_minuhu', 'root', '', {
     host: 'localhost',
     dialect: 'mysql',
     logging: false
