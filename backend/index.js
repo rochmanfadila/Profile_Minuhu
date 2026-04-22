@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const cors = require('cors'); // 1. Tambahkan ini
+const port = 5000;
 
+app.use(cors()); // 2. Tambahkan ini
 app.use(express.json());
 
 const { Sequelize, DataTypes } = require('sequelize');
