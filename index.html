@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Sekolah Minuhu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">MI Nurul Huda</span>
+    <div class="nav-links">
+      <a class="active" onclick="showPage('beranda', this)">Beranda</a>
+      <a onclick="showPage('profil', this)">Profil</a>
+      <a onclick="showPage('berita', this)">Berita</a>
+      <a onclick="showPage('guru', this)">Guru</a>
+      <a onclick="showPage('kontak', this)">Kontak</a>
+    </div>
+  </nav>
+
+  <!-- BERANDA -->
+  <div id="beranda" class="page active">
+    <div class="hero">
+      <span class="badge">Selamat Datang</span>
+      <h1>MI Nurul Huda</h1>
+      <p>Sekolah unggulan yang berkomitmen menciptakan generasi cerdas, berkarakter, dan berdaya saing.</p>
+      <button class="btn" onclick="showPage('profil', document.querySelector('.nav-links a:nth-child(2)'))">Lihat Profil Sekolah</button>
+    </div>
+    <div class="section">
+      <p class="section-title">Berita terbaru</p>
+      <div id="berita-beranda" class="cards">
+        <p class="loading">Memuat berita...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFIL -->
+  <div id="profil" class="page">
+    <div class="section">
+      <p class="section-title">Tentang sekolah</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-num">250+</div><div class="stat-label">Siswa aktif</div></div>
+        <div class="stat"><div class="stat-num">12</div><div class="stat-label">Tenaga pengajar</div></div>
+        <div class="stat"><div class="stat-num">1971</div><div class="stat-label">Tahun berdiri</div></div>
+        <div class="stat"><div class="stat-num">A</div><div class="stat-label">Akreditasi</div></div>
+      </div>
+      <div class="card">
+        <h3>Visi</h3>
+        <p>Menjadi sekolah terbaik yang melahirkan generasi unggul, beriman, dan berwawasan global.</p>
+      </div>
+      <div class="card" style="margin-top: 12px;">
+        <h3>Misi</h3>
+        <p>Menyelenggarakan pendidikan berkualitas, membangun karakter mulia, dan mengembangkan potensi seluruh siswa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BERITA -->
+  <div id="berita" class="page">
+    <div class="section">
+      <p class="section-title">Berita & pengumuman</p>
+      <div id="berita-list" class="cards">
+        <p class="loading">Memuat berita...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GURU -->
+  <div id="guru" class="page">
+    <div class="section">
+      <p class="section-title">Data guru</p>
+      <div id="guru-list" class="guru-grid">
+        <p class="loading">Memuat data guru...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KONTAK -->
+  <div id="kontak" class="page">
+    <div class="section">
+      <p class="section-title">Hubungi kami</p>
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="info-row"><span class="info-label">Alamat</span><span>Jl.Masjid Ngepoh No.432 Lawang</span></div>
+        <div class="info-row"><span class="info-label">Telepon</span><span>(021) 123-4567</span></div>
+        <div class="info-row"><span class="info-label">Email</span><span>info@minuhu.sch.id</span></div>
+        <div class="info-row"><span class="info-label">Jam buka</span><span>Senin–Jumat, 07.00–15.00 WIB</span></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom: 14px;">Kirim pesan</h3>
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" placeholder="Nama lengkap" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="email@contoh.com" />
+        </div>
+        <div class="form-group">
+          <label>Pesan</label>
+          <textarea placeholder="Tulis pesan kamu..."></textarea>
+        </div>
+        <button class="btn">Kirim pesan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
