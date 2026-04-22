@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Mail, Phone, MapPin, Calendar, Award, Users } from 'lucide-react';
+import logoSekolah from './assets/logo.png';
+import fotoGedung from './assets/foto-gedung.jpeg'; // sesuaikan ekstensi filemu (.jpg atau .jpeg)
 
 const App = () => {
   const [profile, setProfile] = useState({});
@@ -28,7 +30,7 @@ const App = () => {
       <nav className="bg-[#1a4d2e] text-white p-4 sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="bg-white p-1 rounded-full w-10 h-10 flex items-center justify-center font-bold text-[#1a4d2e]">MI</div>
+            <img src={logoSekolah} alt="Logo" className="w-10 h-10 object-contain" />
             <h1 className="font-bold text-lg uppercase tracking-wider">{profile.nama_sekolah || "MI NURUL HUDA"}</h1>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-semibold uppercase">
@@ -78,7 +80,7 @@ const App = () => {
           </div>
           <div className="flex-1">
             <div className="bg-gray-200 aspect-video rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden border-8 border-white">
-               <img src="https://via.placeholder.com/600x400?text=Foto+Gedung+Sekolah" alt="Gedung" className="w-full h-full object-cover" />
+              <img src={fotoGedung} alt="Gedung Sekolah" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
