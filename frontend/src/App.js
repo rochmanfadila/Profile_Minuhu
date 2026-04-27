@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Calendar, Award, Users } from 'lucide-react';
 import logoSekolah from './assets/logo.png';
 import fotoGedung from './assets/foto-gedung.jpeg'; 
 
-const App = () => {
+const App = () => { 
   const [profile, setProfile] = useState({});
   const [berita, setBerita] = useState([]);
 
@@ -61,45 +61,62 @@ const App = () => {
         </div>
       </div>
 
-      {/* TENTANG KAMI & KONTAK */}
-      <section id="profil" className="py-20 container mx-auto px-4">
-        <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
-    
-      {/* Bagian Kiri: Map saja */}
-      <div className="md:w-1/2 h-[400px]">
-         <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.54848!2d112.789!3d-7.915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTQnNTQuMCJTIDExMsKwNDcnMjAuNCJF!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" 
-        className="w-full h-full border-0"
-        allowFullScreen="" 
-        loading="lazy"
-        title="Lokasi Sekolah"
-      ></iframe>
-      </div>
+     {/* SEKSI PROFIL MINUHU */}
+      <section id="profil" className="py-24 container mx-auto px-4 bg-gray-50">
+        <div className="flex flex-col md:flex-row items-center gap-16">
+          
+          {/* Bagian Kiri: Satu Foto Utama */}
+          <div className="md:w-1/2 w-full">
+            <div className="relative group">
+              {/* Bingkai Aksen */}
+              <div className="absolute -inset-4 bg-emerald-100 rounded-3xl transform -rotate-3 group-hover:rotate-0 transition-transform duration-500"></div>
+              
+              {/* Wadah Foto Utama */}
+              <div className="relative bg-white p-3 rounded-3xl shadow-2xl overflow-hidden border-4 border-white aspect-[4/3]">
+                <img 
+                  src={fotoGedung} 
+                  alt="Gedung Utama MI Nurul Huda" 
+                  className="w-full h-full object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+            </div>
+            </div>
 
-    {/* Bagian Kanan: Info Kontak */}
-    <div className="md:w-1/2 p-10 flex flex-col justify-center">
-      <h2 className="text-3xl font-bold mb-4 text-[#1a4d2e]">Kontak Kami</h2>
-      <p className="text-gray-500 mb-8">
-        Hubungi kami untuk informasi lebih lanjut mengenai pendaftaran dan kegiatan sekolah.
-      </p>
-      <div className="space-y-4">
-        <div className="border-l-4 border-green-600 pl-4">
-          <p className="text-xs uppercase tracking-widest text-gray-400">Alamat</p>
-          <p className="font-bold text-gray-800">Sumberngepoh, Lawang, Kab. Malang</p>
-        </div>
-        <div className="border-l-4 border-red-500 pl-4">
-          <p className="text-xs uppercase tracking-widest text-gray-400">Telepon</p>
-          <p className="text-red-500 font-bold text-2xl">+62 812-3456-7890</p>
-        </div>
-        <div className="border-l-4 border-gray-400 pl-4">
-          <p className="text-xs uppercase tracking-widest text-gray-400">Email</p>
-          <p className="text-gray-600 font-medium">info@minuruhuda.sch.id</p>
-        </div>
-      </div>
-    </div>
+          {/* Bagian Kanan: Teks & Kolom Visi Misi */}
+          <div className="md:w-1/2 w-full space-y-10">
+            <div className="space-y-4">
+              <span className="text-green-700 font-bold tracking-widest text-sm uppercase inline-block border-b-2 border-green-600 pb-1">
+                Profil MINUHU
+              </span>
+              <h2 className="text-5xl font-extrabold text-gray-900 leading-tight tracking-tight uppercase">
+                {profile.nama_sekolah || "MI Nurul Huda Sumberngepoh"}
+              </h2>
+            </div>
 
-  </div> {/* Penutup div flex */}
-</section> {/* Penutup section profil */}
+            {/* Kolom Visi & Misi Saja (Tanpa Button) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-green-600 hover:shadow-2xl transition-shadow duration-300">
+                <h4 className="font-bold text-gray-900 text-xl mb-4 uppercase tracking-wider flex items-center gap-2">
+                  <Award className="text-green-600" size={22}/> Visi
+                </h4>
+                <p className="text-gray-600 italic text-sm leading-relaxed whitespace-pre-line">
+                  {profile.visi || "Belum ada data visi."}
+                </p>
+              </div>
+              <div className="bg-white p-8 rounded-2xl shadow-lg border-l-8 border-emerald-500 hover:shadow-2xl transition-shadow duration-300">
+                <h4 className="font-bold text-gray-900 text-xl mb-4 uppercase tracking-wider flex items-center gap-2">
+                  <Users className="text-emerald-500" size={22}/> Misi
+                </h4>
+                <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">
+                  {profile.misi || "Belum ada data misi."}
+                </p>
+              </div>
+            </div>
+            
+            {/* Bagian Button Tambahan Sudah Dihilangkan */}
+          </div>
+        </div>
+      </section>
 
       {/* BERITA */}
       <section id="berita" className="bg-gray-100 py-20">
@@ -189,11 +206,11 @@ const App = () => {
 
           {/* Copyright Kecil di Bawah */}
           <div className="mt-12 text-center text-gray-400 text-sm">
-            &copy; 2026 MI Nurul Huda Sumberngepoh. Created by Moch Rochman Fadila Faqih.
+            © 2026 MI Nurul Huda Sumberngepoh. Created by Moch Rochman Fadila Faqih.
           </div>
         </div>
       </footer>
-    </div>
+    </div> // Penutup utama bg-gray-50
   );
 };
 
