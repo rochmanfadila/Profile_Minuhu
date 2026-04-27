@@ -62,7 +62,7 @@ const App = () => {
       </div>
 
       {/* TENTANG KAMI */}
-      <section className="py-20 container mx-auto px-4">
+      <section id="profil" className="py-20 container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           <div className="flex-1 space-y-6">
             <span className="text-green-700 font-bold tracking-widest text-sm uppercase">Tentang Kami</span>
@@ -87,7 +87,7 @@ const App = () => {
       </section>
 
       {/* BERITA */}
-      <section className="bg-gray-100 py-20">
+      <section id="berita" className="bg-gray-100 py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Berita Terbaru</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -114,7 +114,7 @@ const App = () => {
       </section>
       
       {/* FOOTER */}
-      <footer className="bg-zinc-900 text-white py-16">
+      <footer id="kontak" className="bg-zinc-900 text-white py-16">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <h4 className="font-bold text-lg mb-6 uppercase border-b border-green-700 pb-2 inline-block">Hubungi Kami</h4>
