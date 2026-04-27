@@ -34,10 +34,10 @@ const App = () => {
             <h1 className="font-bold text-lg uppercase tracking-wider">{profile.nama_sekolah || "MI NURUL HUDA"}</h1>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-semibold uppercase">
-            <a href="#" className="hover:text-green-300">Beranda</a>
-            <a href="#" className="hover:text-green-300">Profil</a>
-            <a href="#" className="hover:text-green-300">Berita</a>
-            <a href="#" className="hover:text-green-300">Kontak</a>
+            {/* Beranda dihilangkan */}
+            <a href="#profil" className="hover:text-green-300 transition-colors">Profil</a>
+            <a href="#berita" className="hover:text-green-300 transition-colors">Berita</a>
+            <a href="#kontak" className="hover:text-green-300 transition-colors">Kontak</a>
           </div>
         </div>
       </nav>
