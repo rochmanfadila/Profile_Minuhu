@@ -237,35 +237,6 @@ app.delete('/api/kontak/:id', async (req, res, next) => {
     } catch (err) { next(err); }
 });
 
-
-//  7. ROUTES PESAN MASUK 
-// Hanya GET dan POST (publik kirim pesan, admin lihat)
-
-app.get('/api/pesan', async (req, res, next) => {
-    try {
-        const data = await PesanMasuk.findAll({ order: [['created_at', 'DESC']] });
-        res.json({ success: true, total: data.length, data });
-    } catch (err) { next(err); }
-});
-
-app.post('/api/pesan', async (req, res, next) => {
-    try {
-        const { nama, email, pesan } = req.body;
-        const data = await PesanMasuk.create({ nama, email, pesan });
-        res.status(201).json({ success: true, message: 'Pesan berhasil dikirim!', data });
-    } catch (err) { next(err); }
-});
-
-app.delete('/api/pesan/:id', async (req, res, next) => {
-    try {
-        const item = await PesanMasuk.findByPk(req.params.id);
-        if (!item) return res.status(404).json({ success: false, message: 'Pesan tidak ditemukan' });
-        await item.destroy();
-        res.json({ success: true, message: 'Pesan berhasil dihapus!' });
-    } catch (err) { next(err); }
-});
-
-
 // ROUTES PROFILE SEKOLAH
 // Hanya satu data profile, jadi pakai findOne
 
