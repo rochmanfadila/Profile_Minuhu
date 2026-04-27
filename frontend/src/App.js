@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Mail, Phone, MapPin, Calendar, Award, Users } from 'lucide-react';
 import logoSekolah from './assets/logo.png';
-import fotoGedung from './assets/foto-gedung.jpeg'; // sesuaikan ekstensi filemu (.jpg atau .jpeg)
+import fotoGedung from './assets/foto-gedung.jpeg'; 
 
 const App = () => {
   const [profile, setProfile] = useState({});
