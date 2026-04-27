@@ -100,8 +100,9 @@ const User = sequelize.define('User', {
 }, { tableName: 'users', timestamps: true, underscored: true });
 
 
-sequelize.sync({ alter: true }) // Tambahkan alter: true
-    .then(() => console.log('Database & tabel berhasil disinkronkan.'))
+// Ganti baris ini
+sequelize.sync({ alter: true }) 
+    .then(() => console.log('Database & Tabel Berhasil Disinkronkan.'))
     .catch(err => console.error('Gagal sinkron:', err));
 
 //ROUTES BERITA 
