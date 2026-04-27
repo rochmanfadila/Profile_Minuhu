@@ -95,11 +95,11 @@ const App = () => {
               <div key={item.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
                 <div className="h-48 bg-gray-300">
                    <img 
-  src={`/${item.gambar}`} 
-  className="w-full h-full object-cover" 
-  alt={item.judul} 
-  onError={(e) => { e.target.src = "https://via.placeholder.com/400x200" }}
-/>
+                     src={`/${item.gambar}`} 
+                     className="w-full h-full object-cover" 
+                     alt={item.judul} 
+                     onError={(e) => { e.target.src = "https://via.placeholder.com/400x200" }}
+                   />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center text-xs text-gray-400 mb-3"><Calendar size={14} className="mr-1"/> {item.createdAt}</div>
