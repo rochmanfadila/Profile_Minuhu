@@ -13,17 +13,11 @@ const sequelize = process.env.MYSQL_URL
   ? new Sequelize(process.env.MYSQL_URL, {
       dialect: 'mysql',
       logging: false,
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false
-        }
-      }
     })
   : new Sequelize('profile_minuhu', 'root', '', {
       host: 'localhost',
       dialect: 'mysql',
-      logging: false
+      logging: false,
     });
 
 //Fungsi Konversi WIB 
