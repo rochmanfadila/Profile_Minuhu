@@ -78,7 +78,7 @@ const App = () => {
 
     {/* Bagian Kanan: Info Kontak */}
     <div className="md:w-1/2 p-10 flex flex-col justify-center">
-      <h2 className="text-3xl font-bold mb-4 text-[#1a4d2e]">Get in Touch</h2>
+      <h2 className="text-3xl font-bold mb-4 text-[#1a4d2e]">Kontak Kami</h2>
       <p className="text-gray-500 mb-8">
         Hubungi kami untuk informasi lebih lanjut mengenai pendaftaran dan kegiatan sekolah.
       </p>
@@ -128,30 +128,68 @@ const App = () => {
         </div>
       </section>
       
-      {/* FOOTER */}
-      <footer id="kontak" className="bg-zinc-900 text-white py-16">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <h4 className="font-bold text-lg mb-6 uppercase border-b border-green-700 pb-2 inline-block">Hubungi Kami</h4>
-            <div className="space-y-4 text-sm opacity-80">
-              <p className="flex items-start gap-3"><MapPin className="text-green-500 shrink-0" size={20}/> Sumberngepoh, Kab. Malang</p>
-              <p className="flex items-center gap-3"><Phone className="text-green-500 shrink-0" size={20}/> +62 812-3456-7890</p>
-              <p className="flex items-center gap-3"><Mail className="text-green-500 shrink-0" size={20}/> info@minuruhuda.sch.id</p>
+      {/* FOOTER MODERN DENGAN MAP */}
+      <footer id="kontak" className="bg-gray-100 py-20 border-t border-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row bg-white rounded-3xl shadow-2xl overflow-hidden min-h-[450px]">
+            
+            {/* Bagian Kiri: Google Maps */}
+            <div className="md:w-1/2 w-full h-[300px] md:h-auto">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5354432168925!2d112.7161685!3d-7.7214777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7d05776d6342b%3A0x633513a48e7e163b!2sMI%20Nurul%20Huda%20Sumberngepoh!5e0!3m2!1sid!2sid!4v1713430000000!5m2!1sid!2sid" 
+                className="w-full h-full border-0"
+                allowFullScreen="" 
+                loading="lazy"
+                title="Lokasi MI Nurul Huda"
+              ></iframe>
+            </div>
+
+            {/* Bagian Kanan: Info Kontak (Desain Sesuai Gambar) */}
+            <div className="md:w-1/2 w-full p-8 md:p-16 flex flex-col justify-center">
+              <span className="text-green-600 font-bold tracking-widest text-sm uppercase mb-2">Kontak Kami</span>
+              <h2 className="text-4xl font-bold mb-6 text-gray-800">Get in Touch</h2>
+              
+              <p className="text-gray-500 mb-10 leading-relaxed">
+                Silakan hubungi kami untuk informasi pendaftaran siswa baru, kegiatan akademik, atau kunjungan langsung ke sekolah.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full text-green-700">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase font-bold">Alamat</p>
+                    <p className="text-gray-700 font-medium">Sumberngepoh, Lawang, Kab. Malang</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-red-100 p-3 rounded-full text-red-600">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase font-bold">Telepon & WhatsApp</p>
+                    <p className="text-red-600 font-bold text-2xl">+62 812-3456-7890</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-blue-100 p-3 rounded-full text-blue-600">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase font-bold">Email Resmi</p>
+                    <p className="text-gray-700 font-medium">info@minuruhuda.sch.id</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <h4 className="font-bold text-lg mb-6 uppercase border-b border-green-700 pb-2 inline-block">Tautan Cepat</h4>
-            <ul className="space-y-3 text-sm opacity-80">
-              <li><a href="#" className="hover:text-green-500">Profil Guru</a></li>
-              <li><a href="#" className="hover:text-green-500">Pendaftaran Siswa Baru</a></li>
-              <li><a href="#" className="hover:text-green-500">Galeri Foto</a></li>
-            </ul>
-          </div>
-          <div className="text-center md:text-left">
-             <div className="bg-zinc-800 p-8 rounded-2xl border border-zinc-700">
-                <h4 className="font-bold mb-2">MI NURUL HUDA</h4>
-                <p className="text-xs opacity-50 italic">"Mencetak Generasi Cerdas & Berakhlak"</p>
-             </div>
+
+          {/* Copyright Kecil di Bawah */}
+          <div className="mt-12 text-center text-gray-400 text-sm">
+            &copy; 2026 MI Nurul Huda Sumberngepoh. Created by Moch Rochman Fadila Faqih.
           </div>
         </div>
       </footer>
