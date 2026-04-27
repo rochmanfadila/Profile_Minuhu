@@ -163,7 +163,6 @@ const App = () => {
 
             {/* Bagian Kanan: Info Kontak (Desain Sesuai Gambar) */}
             <div className="md:w-1/2 w-full p-8 md:p-16 flex flex-col justify-center">
-              <span className="text-green-600 font-bold tracking-widest text-sm uppercase mb-2"></span>
               <h2 className="text-4xl font-bold mb-6 text-gray-800">Kontak Kami</h2>
               
               <p className="text-gray-500 mb-10 leading-relaxed">
