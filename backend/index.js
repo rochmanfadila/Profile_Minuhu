@@ -8,12 +8,27 @@ app.use(express.json());
 
 const { Sequelize, DataTypes } = require('sequelize');
 
-//Koneksi Database 
-const sequelize = new Sequelize('profile_minuhu', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql',
-    logging: false
-});
+// Koneksi Database
+const sequelize = process.env.MYSQL_URL 
+  ? new Sequelize(process.env.MYSQL_URL, { 
+      logging: false,
+      dialectOptions: {
+        ssl: {
+          rejectUnauthorized: false
+        }
+      }
+    })
+  : new Sequelize(
+      process.env.MYSQLDATABASE || 'profile_minuhu',
+      process.env.MYSQLUSER || 'root',
+      process.env.MYSQLPASSWORD || '',
+      {
+        host: process.env.MYSQLHOST || 'localhost',
+        port: process.env.MYSQLPORT || 3306,
+        dialect: 'mysql',
+        logging: false,
+      }
+    );
 
 //Fungsi Konversi WIB 
 const toWIB = (date) => {
@@ -303,7 +318,9 @@ app.use((err, req, res, next) => {
     res.status(500).json({ success: false, message: 'Terjadi kesalahan server', error: err.message });
 });
 
-//Jalankan Server 
-app.listen(port, () => {
-    console.log(`Server berjalan di http://localhost:${port}`);
+// JANGAN dikunci di port 5000 saja
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server berjalan di port ${PORT}`);
 });

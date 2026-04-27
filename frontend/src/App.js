@@ -13,8 +13,8 @@ const App = () => {
     const fetchData = async () => {
       try {
         // Sesuaikan URL jika port backend kamu bukan 5000
-        const resProfile = await axios.get('http://localhost:5000/api/profile'); 
-        const resBerita = await axios.get('http://localhost:5000/api/berita');
+        const resProfile = await axios.get('https://profileminuhu-production.up.railway.app/api/profile'); 
+        const resBerita = await axios.get('https://profileminuhu-production.up.railway.app/api/berita');
         setProfile(resProfile.data.data || {});
         setBerita(resBerita.data.data || []);
       } catch (err) {
