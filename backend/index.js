@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors'); // 1. Tambahkan ini
 const port = 5000;
+require('dotenv').config();
 
 app.use(cors()); // 2. Tambahkan ini
 app.use(express.json());
@@ -9,16 +10,22 @@ app.use(express.json());
 const { Sequelize, DataTypes } = require('sequelize');
 
 // Koneksi Database
-const sequelize = process.env.MYSQL_URL
+const sequelize = process.env.MYSQL_URL 
   ? new Sequelize(process.env.MYSQL_URL, {
       dialect: 'mysql',
       logging: false,
     })
-  : new Sequelize('profile_minuhu', 'root', '', {
-      host: 'localhost',
-      dialect: 'mysql',
-      logging: false,
-    });
+  : new Sequelize(
+      process.env.MYSQLDATABASE || 'profile_minuhu', 
+      process.env.MYSQLUSER || 'root', 
+      process.env.MYSQLPASSWORD || '', 
+      {
+        host: process.env.MYSQLHOST || 'localhost',
+        port: process.env.MYSQLPORT || 3306,
+        dialect: 'mysql',
+        logging: false,
+      }
+    );
 
 //Fungsi Konversi WIB 
 const toWIB = (date) => {
