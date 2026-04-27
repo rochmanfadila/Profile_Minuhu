@@ -61,30 +61,45 @@ const App = () => {
         </div>
       </div>
 
-      {/* TENTANG KAMI */}
+      {/* TENTANG KAMI & KONTAK */}
       <section id="profil" className="py-20 container mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="flex-1 space-y-6">
-            <span className="text-green-700 font-bold tracking-widest text-sm uppercase">Tentang Kami</span>
-            <h2 className="text-4xl font-bold text-gray-800 uppercase leading-tight">{profile.nama_sekolah || "MI Nurul Huda Sumberngepoh"}</h2>
-            <div className="grid grid-cols-1 gap-4">
-               <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-600">
-                  <h4 className="font-bold mb-2">Visi</h4>
-                  <p className="text-gray-600 italic text-sm">{profile.visi || "Belum ada data visi."}</p>
-               </div>
-               <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-600">
-                  <h4 className="font-bold mb-2">Misi</h4>
-                  <p className="text-gray-600 text-sm whitespace-pre-line">{profile.misi || "Belum ada data misi."}</p>
-               </div>
-            </div>
-          </div>
-          <div className="flex-1">
-            <div className="bg-gray-200 aspect-video rounded-2xl shadow-2xl flex items-center justify-center overflow-hidden border-8 border-white">
-              <img src={fotoGedung} alt="Gedung Sekolah" className="w-full h-full object-cover" />
-            </div>
-          </div>
+        <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+    
+      {/* Bagian Kiri: Map saja */}
+      <div className="md:w-1/2 h-[400px]">
+         <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.54848!2d112.789!3d-7.915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTQnNTQuMCJTIDExMsKwNDcnMjAuNCJF!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" 
+        className="w-full h-full border-0"
+        allowFullScreen="" 
+        loading="lazy"
+        title="Lokasi Sekolah"
+      ></iframe>
+      </div>
+
+    {/* Bagian Kanan: Info Kontak */}
+    <div className="md:w-1/2 p-10 flex flex-col justify-center">
+      <h2 className="text-3xl font-bold mb-4 text-[#1a4d2e]">Get in Touch</h2>
+      <p className="text-gray-500 mb-8">
+        Hubungi kami untuk informasi lebih lanjut mengenai pendaftaran dan kegiatan sekolah.
+      </p>
+      <div className="space-y-4">
+        <div className="border-l-4 border-green-600 pl-4">
+          <p className="text-xs uppercase tracking-widest text-gray-400">Alamat</p>
+          <p className="font-bold text-gray-800">Sumberngepoh, Lawang, Kab. Malang</p>
         </div>
-      </section>
+        <div className="border-l-4 border-red-500 pl-4">
+          <p className="text-xs uppercase tracking-widest text-gray-400">Telepon</p>
+          <p className="text-red-500 font-bold text-2xl">+62 812-3456-7890</p>
+        </div>
+        <div className="border-l-4 border-gray-400 pl-4">
+          <p className="text-xs uppercase tracking-widest text-gray-400">Email</p>
+          <p className="text-gray-600 font-medium">info@minuruhuda.sch.id</p>
+        </div>
+      </div>
+    </div>
+
+  </div> {/* Penutup div flex */}
+</section> {/* Penutup section profil */}
 
       {/* BERITA */}
       <section id="berita" className="bg-gray-100 py-20">
