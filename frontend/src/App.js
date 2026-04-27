@@ -153,7 +153,7 @@ const App = () => {
             {/* Bagian Kiri: Google Maps */}
             <div className="md:w-1/2 w-full h-[300px] md:h-auto">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.5354432168925!2d112.7161685!3d-7.7214777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7d05776d6342b%3A0x633513a48e7e163b!2sMI%20Nurul%20Huda%20Sumberngepoh!5e0!3m2!1sid!2sid!4v1713430000000!5m2!1sid!2sid" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1976.2725901031595!2d112.72180874731448!3d-7.837864341141903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62cac7030969b%3A0x3a1783dddfb415b5!2sMI%20Nurul%20Huda%20Lawang!5e0!3m2!1sid!2sid!4v1777301858864!5m2!1sid!2sid"
                 className="w-full h-full border-0"
                 allowFullScreen="" 
                 loading="lazy"
