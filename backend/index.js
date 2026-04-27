@@ -67,13 +67,6 @@ const KontakSekolah = sequelize.define('KontakSekolah', {
     nilai: { type: DataTypes.STRING, allowNull: false }
 }, { tableName: 'kontak_sekolah', timestamps: true, underscored: true });
 
-const PesanMasuk = sequelize.define('PesanMasuk', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    nama: { type: DataTypes.STRING, allowNull: false },
-    email: { type: DataTypes.STRING, allowNull: false },
-    pesan: { type: DataTypes.TEXT, allowNull: false }
-}, { tableName: 'pesan_masuk', timestamps: true, underscored: true });
-
 const ProfileMinuhu = sequelize.define('ProfileMinuhu', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     nama_sekolah: { type: DataTypes.STRING, allowNull: false },
