@@ -11,7 +11,7 @@ export default function Berita() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    beritaService.getBerita()
+    beritaService.getAll()
       .then(res => setData(res.data.data || res.data))
       .finally(() => setLoading(false));
   }, []);
