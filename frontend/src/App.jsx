@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 
-import Profil from "./pages/Profil";
-import Berita from "./pages/Berita";
-import BeritaDetail from "./pages/BeritaDetail";
+import Profil from "./components/pages/Profil";
+import Berita from "./components/pages/Berita";
+import BeritaDetail from "./components/pages/BeritaDetail";
+import Home from "./components/pages/Home";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Profil />} />
+        <Route path="/" element={<Home />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/berita" element={<Berita />} />
         <Route path="/berita/:id" element={<BeritaDetail />} />
