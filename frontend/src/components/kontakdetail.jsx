@@ -168,68 +168,6 @@ const KontakDetail = () => {
               </a>
             </p>
           </div>
-
-          {/* Pesan Form */}
-          <div style={styles.formCard}>
-            <h2 style={styles.sectionTitle}>Kirim Pesan</h2>
-            <p style={styles.formSubtitle}>Pesan Anda akan diteruskan via WhatsApp.</p>
-
-            {formStatus === 'success' && (
-              <div style={styles.alertSuccess}>
-                ✓ Pesan berhasil dikirim via WhatsApp!
-              </div>
-            )}
-            {formStatus === 'error' && (
-              <div style={styles.alertError}>
-                ✕ Nomor telepon tidak tersedia. Silakan hubungi langsung.
-              </div>
-            )}
-
-            <div style={styles.form}>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Nama Lengkap</label>
-                <input
-                  type="text"
-                  name="nama"
-                  value={formData.nama}
-                  onChange={handleChange}
-                  placeholder="Masukkan nama Anda"
-                  style={styles.input}
-                  required
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="email@contoh.com"
-                  style={styles.input}
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Pesan</label>
-                <textarea
-                  name="pesan"
-                  value={formData.pesan}
-                  onChange={handleChange}
-                  placeholder="Tulis pesan Anda di sini..."
-                  rows={5}
-                  style={{ ...styles.input, resize: 'vertical', minHeight: '120px' }}
-                  required
-                />
-              </div>
-              <button onClick={handleSubmit} style={styles.submitBtn}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '8px' }}>
-                  <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
-                </svg>
-                Kirim Pesan
-              </button>
-            </div>
-          </div>
-
         </div>
       </section>
 
