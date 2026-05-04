@@ -11,7 +11,7 @@ export default function BeritaDetail() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    beritaService.getBeritaById(id)
+   beritaService.getById(id)
       .then(res => setData(res.data.data || res.data))
       .catch(err => console.error("Gagal memuat detail:", err));
   }, [id]);
