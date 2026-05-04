@@ -336,5 +336,3 @@ const styles = {
     fontWeight: '600', letterSpacing: '0.5px',
   },
 };
-
-export default BeritaDetail;
