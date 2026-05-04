@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = 'https://profileminuhu-production.up.railway.app/api';
 
 async function request(path, options = {}) {
   try {
