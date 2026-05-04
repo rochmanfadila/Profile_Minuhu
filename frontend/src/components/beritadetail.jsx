@@ -13,290 +13,151 @@ const BeritaDetail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
-        const [resBerita, resAll] = await Promise.all([
-          axios.get(`${API_BASE}/berita/${id}`),
-          axios.get(`${API_BASE}/berita`),
-        ]);
-        const beritaData = resBerita.data.data || resBerita.data;
-        const allBerita = resAll.data.data || resAll.data || [];
-        setBerita(beritaData);
-        setRelated(allBerita.filter((b) => String(b.id) !== String(id)).slice(0, 4));
+        const res = await axios.get(`${API_BASE}/berita/${id}`);
+        const data = res.data.data || res.data;
+        setBerita(data);
+
+        const resAll = await axios.get(`${API_BASE}/berita`);
+        const all = resAll.data.data || resAll.data || [];
+
+        setRelated(all.filter(b => String(b.id) !== String(id)).slice(0, 4));
       } catch (err) {
-        console.error('Gagal mengambil data berita:', err);
+        console.error(err);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
     window.scrollTo(0, 0);
   }, [id]);
 
-  const formatDate = (dateStr) => {
-    if (!dateStr) return '';
-    try {
-      return new Date(dateStr).toLocaleDateString('id-ID', {
-        day: 'numeric', month: 'long', year: 'numeric',
-      });
-    } catch {
-      return dateStr;
-    }
-  };
+  const content = berita?.konten ?? berita?.isi ?? '';
 
   if (loading) {
     return (
-      <div style={styles.loadingWrapper}>
-        <div style={styles.spinnerRing}></div>
-        <p style={styles.loadingText}>Memuat berita...</p>
+      <div className="flex justify-center items-center min-h-[60vh] text-green-800">
+        Memuat berita...
       </div>
     );
   }
 
   if (!berita) {
     return (
-      <div style={styles.errorWrapper}>
-        <p style={styles.errorText}>Berita tidak ditemukan.</p>
-        <button style={styles.backBtn} onClick={() => navigate(-1)}>← Kembali</button>
+      <div className="text-center py-20">
+        <p className="mb-4 text-gray-600">Berita tidak ditemukan.</p>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-green-800 text-white px-4 py-2 rounded"
+        >
+          Kembali
+        </button>
       </div>
     );
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.layout}>
+    <div className="bg-gray-100 min-h-screen py-10 px-4">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_300px] gap-8">
 
-        {/* ─── Artikel Utama ─── */}
-        <main style={styles.main}>
+        {/* MAIN */}
+        <div className="bg-white rounded-xl shadow p-6 md:p-10">
 
           {/* Back */}
-          <button style={styles.backLink} onClick={() => navigate(-1)}>
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Kembali ke Berita
+          <button
+            onClick={() => navigate(-1)}
+            className="mb-6 text-sm text-green-800 border border-green-800 px-3 py-1 rounded"
+          >
+            ← Kembali ke Berita
           </button>
 
-          {/* Category + Date */}
-          <div style={styles.meta}>
+          {/* Meta */}
+          <div className="flex flex-wrap items-center gap-2 mb-4 text-sm text-gray-500">
             {berita.kategori && (
-              <span style={styles.categoryBadge}>{berita.kategori}</span>
+              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
+                {berita.kategori}
+              </span>
             )}
-            <span style={styles.metaDate}>{formatDate(berita.tanggal || berita.created_at)}</span>
+            <span>
+              {new Date(berita.tanggal || berita.created_at).toLocaleDateString('id-ID')}
+            </span>
           </div>
 
           {/* Title */}
-          <h1 style={styles.title}>{berita.judul}</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-green-900 mb-4">
+            {berita.judul}
+          </h1>
 
           {/* Author */}
           {berita.penulis && (
-            <div style={styles.authorRow}>
-              <div style={styles.authorAvatar}>
-                {berita.penulis.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <span style={styles.authorName}>{berita.penulis}</span>
-                <span style={styles.authorSub}> · Penulis</span>
-              </div>
-            </div>
+            <p className="text-sm text-gray-600 mb-6">
+              Oleh <span className="font-semibold">{berita.penulis}</span>
+            </p>
           )}
 
-          {/* Cover Image */}
+          {/* Image */}
           {berita.gambar && (
-            <div style={styles.imageWrapper}>
-              <img
-                src={berita.gambar}
-                alt={berita.judul}
-                style={styles.coverImage}
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            </div>
+            <img
+              src={berita.gambar}
+              alt={berita.judul}
+              className="w-full h-[300px] object-cover rounded-lg mb-6"
+            />
           )}
 
           {/* Content */}
-          <div style={styles.articleBody}>
-            {(berita.konten || berita.isi || '').split('\n').filter(Boolean).map((para, i) => (
-              <p key={i} style={styles.paragraph}>{para}</p>
+          <div className="space-y-4 text-gray-700 leading-relaxed text-justify">
+            {content.split('\n').filter(Boolean).map((p, i) => (
+              <p key={i}>{p}</p>
             ))}
           </div>
-        </main>
+        </div>
 
-        {/* ─── Sidebar ─── */}
-        <aside style={styles.sidebar}>
-          <div style={styles.sidebarCard}>
-            <h3 style={styles.sidebarTitle}>Berita Terkait</h3>
-            {related.length === 0 ? (
-              <p style={styles.noRelated}>Tidak ada berita lain.</p>
-            ) : (
-              <div style={styles.relatedList}>
-                {related.map((item) => (
-                  <div
-                    key={item.id}
-                    style={styles.relatedItem}
-                    onClick={() => navigate(`/berita/${item.id}`)}
-                  >
-                    {item.gambar ? (
-                      <img src={item.gambar} alt={item.judul} style={styles.relatedThumb}
-                        onError={(e) => { e.target.style.display = 'none'; }} />
-                    ) : (
-                      <div style={styles.relatedThumbPlaceholder}>
-                        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#a8c5b4" strokeWidth="1.5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
+        {/* SIDEBAR */}
+        <div className="bg-white rounded-xl shadow p-6 h-fit sticky top-6">
+          <h3 className="font-bold text-green-900 mb-4 border-b pb-2">
+            Berita Terkait
+          </h3>
+
+          {related.length === 0 ? (
+            <p className="text-sm text-gray-500">Tidak ada berita lain.</p>
+          ) : (
+            <div className="space-y-4">
+              {related.map(item => (
+                <div
+                  key={item.id}
+                  onClick={() => navigate(`/berita/${item.id}`)}
+                  className="flex gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                >
+                  {item.gambar ? (
+                    <img
+                      src={item.gambar}
+                      alt={item.judul}
+                      className="w-16 h-12 object-cover rounded"
+                    />
+                  ) : (
+                    <div className="w-16 h-12 bg-gray-200 rounded" />
+                  )}
+
+                  <div>
+                    <p className="text-sm font-semibold text-green-900 line-clamp-2">
+                      {item.judul}
+                    </p>
+                    {item.kategori && (
+                      <span className="text-xs text-green-600">
+                        {item.kategori}
+                      </span>
                     )}
-                    <div style={styles.relatedInfo}>
-                      <p style={styles.relatedTitle}>{item.judul}</p>
-                      {item.kategori && <span style={styles.relatedCat}>{item.kategori}</span>}
-                    </div>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </aside>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
       </div>
     </div>
   );
 };
 
-const GREEN_DARK = '#1a3a2a';
-const GREEN_MID = '#1f4d33';
-const GREEN_ACCENT = '#52b788';
-
-const styles = {
-  page: {
-    minHeight: '100vh',
-    background: '#f4f7f5',
-    fontFamily: "'Georgia', serif",
-    paddingBottom: '60px',
-  },
-  layout: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '40px 24px',
-    display: 'grid',
-    gridTemplateColumns: '1fr 320px',
-    gap: '36px',
-    alignItems: 'start',
-  },
-
-  /* Loading / Error */
-  loadingWrapper: {
-    display: 'flex', flexDirection: 'column', alignItems: 'center',
-    justifyContent: 'center', minHeight: '60vh', gap: '16px',
-  },
-  spinnerRing: {
-    width: '44px', height: '44px',
-    border: `4px solid #e0e0e0`,
-    borderTop: `4px solid ${GREEN_MID}`,
-    borderRadius: '50%',
-  },
-  loadingText: { color: GREEN_MID, fontSize: '15px', fontFamily: 'sans-serif' },
-  errorWrapper: { textAlign: 'center', padding: '80px 24px' },
-  errorText: { color: '#666', fontSize: '16px', marginBottom: '20px', fontFamily: 'sans-serif' },
-
-  /* Back */
-  backLink: {
-    display: 'inline-flex', alignItems: 'center', gap: '8px',
-    color: GREEN_MID, background: 'none', border: `1px solid ${GREEN_MID}`,
-    borderRadius: '8px', padding: '8px 16px', cursor: 'pointer',
-    fontSize: '14px', fontFamily: 'sans-serif', marginBottom: '28px',
-    transition: 'all 0.2s',
-  },
-  backBtn: {
-    background: GREEN_MID, color: '#fff', border: 'none',
-    borderRadius: '8px', padding: '10px 24px', cursor: 'pointer', fontFamily: 'sans-serif',
-  },
-
-  /* Main */
-  main: {
-    background: '#fff', borderRadius: '16px',
-    padding: '40px', boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
-  },
-  meta: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' },
-  categoryBadge: {
-    background: `${GREEN_ACCENT}22`, color: GREEN_MID,
-    padding: '4px 14px', borderRadius: '100px', fontSize: '12px',
-    fontFamily: 'sans-serif', fontWeight: '600', letterSpacing: '0.5px',
-  },
-  metaDate: { color: '#9ab', fontSize: '13px', fontFamily: 'sans-serif' },
-  title: {
-    color: GREEN_DARK, fontSize: 'clamp(22px, 3vw, 32px)',
-    fontWeight: '700', lineHeight: 1.3, margin: '0 0 20px',
-  },
-  authorRow: { display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' },
-  authorAvatar: {
-    width: '36px', height: '36px', borderRadius: '50%',
-    background: GREEN_MID, color: '#fff', display: 'flex',
-    alignItems: 'center', justifyContent: 'center',
-    fontWeight: '700', fontSize: '14px', fontFamily: 'sans-serif',
-  },
-  authorName: { color: GREEN_DARK, fontWeight: '600', fontSize: '14px', fontFamily: 'sans-serif' },
-  authorSub: { color: '#9ab', fontSize: '13px', fontFamily: 'sans-serif' },
-
-  imageWrapper: {
-    borderRadius: '12px', overflow: 'hidden',
-    marginBottom: '32px', maxHeight: '400px',
-  },
-  coverImage: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
-
-  articleBody: { marginBottom: '40px' },
-  paragraph: {
-    color: '#333', lineHeight: 1.85, fontSize: '16px',
-    marginBottom: '18px', fontFamily: 'sans-serif',
-    textAlign: 'justify',
-  },
-
-  shareSection: {
-    borderTop: '1px solid #eee', paddingTop: '24px',
-    display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap',
-  },
-  shareLabel: { color: '#666', fontFamily: 'sans-serif', fontSize: '14px' },
-  shareButtons: { display: 'flex', gap: '10px' },
-  shareBtn: {
-    display: 'inline-flex', alignItems: 'center', gap: '6px',
-    color: '#fff', textDecoration: 'none', borderRadius: '8px',
-    padding: '8px 16px', fontSize: '13px', fontFamily: 'sans-serif', fontWeight: '600',
-  },
-
-  /* Sidebar */
-  sidebar: { position: 'sticky', top: '24px' },
-  sidebarCard: {
-    background: '#fff', borderRadius: '16px',
-    padding: '28px', boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
-  },
-  sidebarTitle: {
-    color: GREEN_DARK, fontSize: '18px', fontWeight: '700',
-    margin: '0 0 20px', paddingBottom: '16px',
-    borderBottom: `2px solid ${GREEN_ACCENT}`,
-  },
-  noRelated: { color: '#999', fontSize: '14px', fontFamily: 'sans-serif' },
-  relatedList: { display: 'flex', flexDirection: 'column', gap: '16px' },
-  relatedItem: {
-    display: 'flex', gap: '12px', alignItems: 'flex-start',
-    cursor: 'pointer', padding: '8px', borderRadius: '8px',
-    transition: 'background 0.2s',
-  },
-  relatedThumb: {
-    width: '70px', height: '56px', borderRadius: '8px',
-    objectFit: 'cover', flexShrink: 0,
-  },
-  relatedThumbPlaceholder: {
-    width: '70px', height: '56px', borderRadius: '8px',
-    background: '#f0f4f2', display: 'flex',
-    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-  },
-  relatedInfo: { flex: 1 },
-  relatedTitle: {
-    color: GREEN_DARK, fontSize: '14px', fontWeight: '600',
-    margin: '0 0 6px', lineHeight: 1.4, fontFamily: 'sans-serif',
-    display: '-webkit-box', WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical', overflow: 'hidden',
-  },
-  relatedCat: {
-    color: GREEN_ACCENT, fontSize: '11px', fontFamily: 'sans-serif',
-    fontWeight: '600', letterSpacing: '0.5px',
-  },
-};
+export default BeritaDetail;
