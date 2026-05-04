@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
-
-export default function Navbar() {
+export default function Navbar({ profile }) {
   return (
-    <nav className="bg-green-900 text-white">
-      <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
-        <h1 className="font-bold text-lg">MINUHU</h1>
-
-        <div className="flex gap-6 text-sm">
-          <Link to="/">Home</Link>
-          <Link to="/profil">Profil</Link>
-          <Link to="/berita">Berita</Link>
+    <nav className="bg-green-800 text-white p-4 sticky top-0">
+      <div className="max-w-6xl mx-auto flex justify-between">
+        <h1 className="font-bold">
+          {profile.nama_sekolah || "MI NURUL HUDA"}
+        </h1>
+        <div className="space-x-6 text-sm">
+          <a href="#profil">Profil</a>
+          <a href="#berita">Berita</a>
+          <a href="#kontak">Kontak</a>
         </div>
       </div>
     </nav>
