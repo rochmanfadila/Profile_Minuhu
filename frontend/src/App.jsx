@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 
 import Profil from "./components/pages/Profil";
@@ -8,7 +8,7 @@ import Home from "./components/pages/Home";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
 
       <Routes>
@@ -17,7 +17,7 @@ function App() {
         <Route path="/berita" element={<Berita />} />
         <Route path="/berita/:id" element={<BeritaDetail />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
