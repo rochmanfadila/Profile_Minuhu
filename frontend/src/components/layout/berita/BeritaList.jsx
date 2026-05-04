@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // Gunakan kurung kurawal dan pastikan folder bernama 'service'
 import { beritaService } from "../../../service/api"; 
 // Loader ada di ../../ui/
-import Loader from "../ui/Loader";   
+import Loader from "../../ui/Loader";   
 import Container from "../../layout/Container"; // Sesuaikan jika Container ada di layout
 import BeritaCard from "./BeritaCard";
 
