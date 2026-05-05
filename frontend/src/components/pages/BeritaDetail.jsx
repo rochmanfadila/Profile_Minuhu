@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// Gunakan beritaService dan pastikan folder 'service' (tanpa s)
-import { beritaService } from "../../service/api"; 
-// Loader ada di ../ui/ (naik satu tingkat dari pages ke components)
-import Loader from "../ui/Loader"; 
+
+import { beritaService } from "../../service/api"; // sesuaikan kalau beda
+import Loader from "../ui/Loader";
 import Container from "../layout/Container";
 
 export default function BeritaDetail() {
@@ -11,25 +10,45 @@ export default function BeritaDetail() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-   beritaService.getById(id)
-      .then(res => setData(res.data.data || res.data))
-      .catch(err => console.error("Gagal memuat detail:", err));
+    beritaService.getById(id)
+      .then(res => setData(res?.data || res))
+      .catch(err => console.error(err));
   }, [id]);
 
   if (!data) return <Loader />;
 
   return (
     <Container>
-      <div className="max-w-3xl mx-auto py-10">
-        <h1 className="text-2xl font-bold text-green-800 mb-4">{data.judul}</h1>
+      <div className="max-w-4xl mx-auto py-10">
+
+        {/* Gambar utama */}
         {data.gambar && (
-          <img src={data.gambar} alt={data.judul} className="w-full h-auto rounded-lg mb-6 object-cover" />
+          <img
+            src={data.gambar}
+            alt={data.judul}
+            className="w-full h-[400px] object-cover rounded-xl mb-6 shadow"
+          />
         )}
-        <div className="text-gray-700 leading-relaxed space-y-4">
-          {(data.isi_berita || data.konten || "").split("\n").map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+
+        {/* Judul */}
+        <h1 className="text-3xl md:text-4xl font-bold text-green-800 mb-3">
+          {data.judul}
+        </h1>
+
+        {/* Meta info */}
+        <p className="text-sm text-gray-500 mb-6">
+          Dipublikasikan pada {data.createdAt || "Tanggal tidak tersedia"}
+        </p>
+
+        {/* Konten */}
+        <div className="text-gray-700 leading-relaxed space-y-4 text-justify">
+          {(data.isi_berita || data.konten || "")
+            .split("\n")
+            .map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
         </div>
+
       </div>
     </Container>
   );
