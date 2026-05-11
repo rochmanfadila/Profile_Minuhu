@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Hero from "../Hero";
 import Profil from "./Profil";
-import KontakDetail from "./Kontak/KontakDetail";
+import KontakDetail from "./KontakDetail";
 import Footer from "../layout/Footer";
 
 const API = "https://profileminuhu-production.up.railway.app/api";
