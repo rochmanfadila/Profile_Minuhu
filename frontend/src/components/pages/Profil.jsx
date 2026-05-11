@@ -56,7 +56,7 @@ export default function Profil({ profile: propProfile, isHomePage }) {
             <div className="bg-white rounded-xl shadow p-4 border-l-4 border-green-500">
               <p className="text-xs font-bold text-green-600 uppercase mb-2">👁 Visi</p>
               <p className="text-sm italic text-gray-500">
-                {profile?.visi || "Belum ada data visi."}
+                {profile?.visi || "Terwujudnya Generasi yang Berakhlakul Karimah, Unggul dalam Prestasi, dan Berjiwa Qur’ani."}
               </p>
             </div>
             <div className="bg-white rounded-xl shadow p-4 border-l-4 border-green-500">
