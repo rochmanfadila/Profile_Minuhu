@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+// Tambahkan import di bagian atas file
+import fotoGedung from "../../assets/foto-gedung.jpeg";
 
 const API = "https://profileminuhu-production.up.railway.app/api";
 
