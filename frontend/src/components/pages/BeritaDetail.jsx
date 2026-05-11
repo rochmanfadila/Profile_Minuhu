@@ -24,7 +24,7 @@ export default function BeritaDetail() {
         {/* Gambar utama */}
         {data.gambar && (
           <img
-            src={data.gambar}
+            src={"/" + data.gambar}
             alt={data.judul}
             className="w-full h-[400px] object-cover rounded-xl mb-6 shadow"
           />
