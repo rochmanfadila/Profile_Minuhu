@@ -24,15 +24,30 @@ export default function Berita() {
     b.judul?.toLowerCase().includes(search.toLowerCase())
   );
 
-  const formatTanggal = (str) => {
-    if (!str) return "";
-    return new Date(str).toLocaleDateString("id-ID", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
+ const formatTanggal = (str) => {
+  if (!str) return "Tanggal tidak tersedia";
 
+  // Membersihkan string jika formatnya dari SQL (misal ada spasi atau format T)
+  // Kita coba parse secara manual jika standard Date gagal
+  let date = new Date(str);
+
+  // Jika masih gagal, coba bersihkan karakter non-standar
+  if (isNaN(date.getTime())) {
+    const cleanedStr = str.split(' ')[0]; // Ambil bagian tanggal saja (YYYY-MM-DD)
+    date = new Date(cleanedStr);
+  }
+
+  // Cek terakhir, jika benar-benar bukan tanggal
+  if (isNaN(date.getTime())) {
+    return "Format tanggal tidak valid";
+  }
+
+  return date.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner */}
