@@ -15,7 +15,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 font-bold text-sm tracking-widest uppercase">
           <img src={logo} alt="Logo MI Nurul Huda"
-            className="w-9 h-9 rounded-full object-cover border-2 border-green-400" />
+            className="w-12 h-12 object-contain"
+          />
           MI NURUL HUDA
         </Link>
 
