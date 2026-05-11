@@ -1,84 +1,107 @@
-// src/components/pages/Profil.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE = "https://profileminuhu-production.up.railway.app/api";
+const API = "https://profileminuhu-production.up.railway.app/api";
 
-export default function ProfilDetail({ isHomePage = false, profileData = null }) {
-  const [profile, setProfile] = useState(profileData);
-  const [loading, setLoading] = useState(!profileData);
+export default function Profil({ profile: propProfile, isHomePage }) {
+  const [profile, setProfile] = useState(propProfile || {});
 
   useEffect(() => {
-    if (!profileData) {
-      axios.get(`${API_BASE}/profile`)
+    if (!propProfile) {
+      axios.get(`${API}/profile`)
         .then(res => setProfile(res.data.data || res.data))
-        .catch(() => console.error("Gagal ambil profil"))
-        .finally(() => setLoading(false));
+        .catch(console.error);
+    } else {
+      setProfile(propProfile);
     }
-  }, [profileData]);
+  }, [propProfile]);
 
-  if (loading) return null; // Agar tidak muncul loading dobel di Home
+  const misiList = (profile?.misi || "").split("\n").filter(Boolean);
 
   return (
-    <div className={`${isHomePage ? "" : "bg-gray-50 min-h-screen"}`}>
+    <div>
+      {/* Label + Judul */}
+      <div className="text-center mb-8">
+        <p className="text-xs font-bold text-green-600 tracking-widest uppercase mb-2">
+          Profil Minuhu
+        </p>
+        <h1 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-wide">
+          {profile?.nama_sekolah || "MI Nurul Huda Sumberngepoh"}
+        </h1>
+      </div>
 
-      {/* Tampilkan HERO & STATS hanya jika BUKAN di halaman Home */}
-      {!isHomePage && (
-        <>
-          <section className="bg-gradient-to-r from-green-900 to-green-700 text-center text-white py-16 px-4">
-            <h1 className="text-3xl md:text-4xl font-bold">
-              {profile?.nama_sekolah || "MI Nurul Huda"}
-            </h1>
-            <p className="mt-2 text-green-200 italic">
-              {profile?.tagline || "Mencetak generasi rabbani"}
-            </p>
-          </section>
-
-          <section className="grid grid-cols-2 md:grid-cols-4 text-center bg-green-900 text-white">
-            {[
-              { label: "Siswa", value: profile?.jumlah_siswa || "500+" },
-              { label: "Guru", value: profile?.jumlah_guru || "30+" },
-              { label: "Akreditasi", value: profile?.akreditasi || "A" },
-              { label: "Berdiri", value: profile?.tahun_berdiri || "2009" },
-            ].map((item, i) => (
-              <div key={i} className="py-6 border border-white/10">
-                <p className="text-xl font-bold">{item.value}</p>
-                <p className="text-sm text-green-200">{item.label}</p>
-              </div>
-            ))}
-          </section>
-        </>
-      )}
-
-      {/* ISI CONTENT (Ini yang akan muncul di Home) */}
-      <div className={`max-w-4xl mx-auto p-6 space-y-6 ${isHomePage ? "py-12" : ""}`}>
-        
-        {/* Judul Seksi jika di Home */}
-        {isHomePage && (
-          <h2 className="text-3xl font-bold text-green-900 text-center mb-8">Profil Sekolah</h2>
-        )}
-
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="text-lg font-semibold text-green-800 mb-2">Tentang Sekolah</h2>
-          <p className="text-gray-600 leading-relaxed">
-            {profile?.deskripsi || "Deskripsi sekolah belum tersedia."}
-          </p>
+      {/* Grid foto + kartu */}
+      <div className="grid md:grid-cols-2 gap-8 items-start mb-12">
+        {/* Foto gedung */}
+        <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-4">
+          <img
+            src="/assets/foto-gedung.jpeg"
+            alt="Gedung Sekolah"
+            className="w-full rounded-xl object-cover h-72"
+            onError={(e) => { e.target.style.display = "none"; }}
+          />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow">
-            <h2 className="font-semibold text-green-800 mb-2">Visi</h2>
-            <p className="text-gray-600">{profile?.visi || "Visi belum tersedia"}</p>
+        {/* Kartu kanan */}
+        <div className="flex flex-col gap-4">
+          <div className="bg-white rounded-xl shadow p-5 border-l-4 border-green-500">
+            <h3 className="text-sm font-bold uppercase tracking-wide text-gray-800 mb-2">
+              🏫 Tentang Kami
+            </h3>
+            <p className="text-sm text-gray-500 leading-relaxed">
+              {profile?.deskripsi || "MI Nurul Huda adalah madrasah ibtidaiyah yang berdedikasi memberikan pendidikan berkualitas dengan landasan nilai-nilai Islam yang kuat."}
+            </p>
           </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white rounded-xl shadow p-4 border-l-4 border-green-500">
+              <p className="text-xs font-bold text-green-600 uppercase mb-2">👁 Visi</p>
+              <p className="text-sm italic text-gray-500">
+                {profile?.visi || "Belum ada data visi."}
+              </p>
+            </div>
+            <div className="bg-white rounded-xl shadow p-4 border-l-4 border-green-500">
+              <p className="text-xs font-bold text-green-600 uppercase mb-2">🎯 Misi</p>
+              {misiList.length > 0 ? (
+                <ul className="text-sm text-gray-500 list-disc pl-4 leading-relaxed">
+                  {misiList.map((m, i) => <li key={i}>{m}</li>)}
+                </ul>
+              ) : (
+                <p className="text-sm italic text-gray-500">Belum ada data misi.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <div className="bg-white p-6 rounded-xl shadow">
-            <h2 className="font-semibold text-green-800 mb-2">Misi</h2>
-            <ul className="list-disc ml-5 text-gray-600 space-y-1">
-              {(profile?.misi ? profile.misi.split("\n") : ["Misi belum tersedia"]).map((m, i) => (
-                <li key={i}>{m}</li>
+      {/* Informasi Detail */}
+      <div className="rounded-xl overflow-hidden shadow">
+        <div className="bg-green-800 px-6 py-4">
+          <h2 className="text-white text-sm font-bold uppercase tracking-widest">
+            Informasi Detail Sekolah
+          </h2>
+        </div>
+        <div className="bg-white divide-y">
+          {[
+            [{ lbl: "Nama Sekolah", val: profile?.nama_sekolah || "MI Nurul Huda" },
+             { lbl: "NPSN", val: profile?.npsn || "-" }],
+            [{ lbl: "Status", val: profile?.status || "Swasta" },
+             { lbl: "Akreditasi", val: profile?.akreditasi || "A" }],
+            [{ lbl: "Kepala Sekolah", val: profile?.kepala_sekolah || "-" },
+             { lbl: "Tahun Berdiri", val: profile?.tahun_berdiri || "2009" }],
+            [{ lbl: "Jumlah Siswa", val: `${profile?.jumlah_siswa || "500+"} siswa` },
+             { lbl: "Alamat", val: profile?.alamat || "Desa Sumberngepoh, Lawang, Malang" }],
+          ].map((row, ri) => (
+            <div key={ri} className="grid grid-cols-2">
+              {row.map((cell, ci) => (
+                <div key={ci} className="px-6 py-4 border-r last:border-r-0">
+                  <p className="text-xs font-bold text-green-600 uppercase tracking-wide mb-1 flex items-center gap-1">
+                    › {cell.lbl}
+                  </p>
+                  <p className="text-sm text-gray-700 font-medium">{cell.val}</p>
+                </div>
               ))}
-            </ul>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

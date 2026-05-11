@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { beritaService } from "../../service/api"; // sesuaikan kalau beda
-import Loader from "../ui/Loader";
+import Loader from "../layout/ui/Loader";
 import Container from "../layout/Container";
 
 export default function BeritaDetail() {

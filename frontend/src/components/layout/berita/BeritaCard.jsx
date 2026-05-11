@@ -9,7 +9,7 @@ export default function BeritaCard({ item }) {
       className="cursor-pointer bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
     >
       {item.gambar && (
-        <img src={item.gambar} className="h-40 w-full object-cover" />
+        <img src={item.gambar} className="h-40 w-full object-cover" alt={item.judul} />
       )}
 
       <div className="p-4">
