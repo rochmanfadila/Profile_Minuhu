@@ -66,7 +66,7 @@ export default function Profil({ profile: propProfile, isHomePage }) {
                   {misiList.map((m, i) => <li key={i}>{m}</li>)}
                 </ul>
               ) : (
-                <p className="text-sm italic text-gray-500">Belum ada data misi.</p>
+                <p className="text-sm italic text-gray-500">Menanamkan Aqidah dan Akhlak: Menyelenggarakan pendidikan yang berbasis pada nilai-nilai keislaman dan pembiasaan akhlak mulia dalam kehidupan sehari-hari.</p>
               )}
             </div>
           </div>
