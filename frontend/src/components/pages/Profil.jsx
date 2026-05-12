@@ -87,7 +87,7 @@ export default function Profil({ profile: propProfile, isHomePage }) {
              { lbl: "NPSN", val: profile?.npsn || "-" }],
             [{ lbl: "Status", val: profile?.status || "Swasta" },
              { lbl: "Akreditasi", val: profile?.akreditasi || "B" }],
-            [{ lbl: "Kepala Sekolah", val: profile?.kepala_sekolah || "-" },
+            [{ lbl: "Kepala Sekolah", val: profile?.kepala_sekolah || "Salim Rais, S.Pd, M.Pd" },
              { lbl: "Tahun Berdiri", val: profile?.tahun_berdiri || "1983" }],
             [{ lbl: "Jumlah Siswa", val: `${profile?.jumlah_siswa || "500+"} siswa` },
              { lbl: "Alamat", val: profile?.alamat || "Desa Sumberngepoh, Lawang, Malang" }],
