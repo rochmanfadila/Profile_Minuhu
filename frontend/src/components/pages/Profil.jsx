@@ -20,7 +20,7 @@ export default function Profil({ profile: propProfile, isHomePage }) {
   const misiList = (profile?.misi || "").split("\n").filter(Boolean);
 
   return (
-    <div>
+    <div className="pt-24 pb-12 px-4 md:px-0">
       {/* Label + Judul */}
       <div className="text-center mb-8">
         <p className="text-xs font-bold text-green-600 tracking-widest uppercase mb-2">
