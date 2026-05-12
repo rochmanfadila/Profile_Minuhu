@@ -6,6 +6,7 @@ import Profil from "./components/pages/Profil";
 import Berita from "./components/pages/Berita";
 import BeritaDetail from "./components/pages/BeritaDetail";
 import Home from "./components/pages/Home";
+import Kontak from "./components/pages/Kontak";
 
 const API = "https://profileminuhu-production.up.railway.app/api";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profil" element={<Profil profile={profile} />} />
         <Route path="/berita" element={<Berita />} />
         <Route path="/berita/:id" element={<BeritaDetail />} />
+        <Route path="/kontak" element={<Kontak />} />
       </Routes>
     </>
   );

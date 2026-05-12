@@ -45,7 +45,16 @@ export default function Kontak() {
 
         {/* Google Maps Placeholder */}
         <div className="mt-12 rounded-2xl overflow-hidden shadow-sm h-80 bg-gray-200 flex items-center justify-center">
-           <p className="text-gray-500 italic">[ Masukkan Embed Google Maps Di Sini ]</p>
+           <iframe
+             title="Lokasi MI Nurul Huda"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.5484683223926!2d112.71951137390269!3d-7.837518077864741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62cac7030969b%3A0x3a1783dddfb415b5!2sMI%20Nurul%20Huda%20Lawang!5e0!3m2!1sid!2sid!4v1778573244104!5m2!1sid!2sid"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
         </div>
       </Container>
     </div>
