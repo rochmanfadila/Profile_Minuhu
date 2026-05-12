@@ -32,14 +32,15 @@ export default function Navbar() {
         <button className="md:hidden" onClick={() => setOpen(!open)}>☰</button>
       </div>
 
-      {open && (
-        <div className="md:hidden bg-green-800 px-6 pb-4 flex flex-col gap-3 text-xs font-semibold tracking-widest uppercase">
-          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
-          <Link to="/profil" onClick={() => setOpen(false)}>Profil</Link>
-          <Link to="/berita" onClick={() => setOpen(false)}>Berita</Link>
-          <Link to="/kontak" onClick={() => setOpen(false)}>Kontak</Link>
-        </div>
-      )}
+      {/* Ubah bagian ini */}
+        {open && (
+      <div className="md:hidden bg-green-800 px-6 pt-5 pb-4 flex flex-col gap-3 text-xs font-semibold tracking-widest uppercase border-t border-green-700/50">
+        <Link to="/" onClick={() => setOpen(false)}>Home</Link>
+        <Link to="/profil" onClick={() => setOpen(false)}>Profil</Link>
+        <Link to="/berita" onClick={() => setOpen(false)}>Berita</Link>
+        <Link to="/kontak" onClick={() => setOpen(false)}>Kontak</Link>
+      </div>
+    )}
     </nav>
   );
 }
