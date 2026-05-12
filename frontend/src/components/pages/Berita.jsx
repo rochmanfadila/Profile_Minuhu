@@ -85,84 +85,51 @@ export default function Berita() {
             </div>
           ) : (
             <>
-              <p className="text-sm text-gray-500 mb-6">
-                Menampilkan {filtered.length} berita
-              </p>
+            <p className="text-sm text-gray-500 mb-6">
+              Menampilkan {filtered.length} berita
+            </p>
 
-              {/* Featured (berita pertama besar) */}
-              {!search && filtered.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((b) => (
                 <Link
-                  to={`/berita/${filtered[0]._id || filtered[0].id}`}
-                  className="block mb-8 group"
+                  key={b._id || b.id}
+                  to={`/berita/${b._id || b.id}`}
+                  className="group bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden flex flex-col"
                 >
-                  <div className="bg-white rounded-2xl shadow overflow-hidden md:flex hover:shadow-lg transition">
-                    {filtered[0].gambar ? (
+                  <div className="overflow-hidden">
+                    {b.gambar ? (
                       <img
-                        src={"/" + filtered[0].gambar}
-                        alt={filtered[0].judul}
-                        className="w-full md:w-1/2 h-56 md:h-72 object-cover"
+                        src={"/" + b.gambar}
+                        alt={b.judul}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (
-                      <div className="w-full md:w-1/2 h-56 md:h-72 bg-green-100 flex items-center justify-center text-5xl">
+                      <div className="w-full h-48 bg-green-50 flex items-center justify-center text-4xl">
+                        {/* Placeholder */}
                       </div>
                     )}
-                    <div className="p-6 md:p-8 flex flex-col justify-center">
-                      <span className="text-xs bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full w-fit mb-3">
-                        Terbaru
-                      </span>
-                      <h2 className="text-xl md:text-2xl font-bold text-gray-800 group-hover:text-green-700 transition mb-3 line-clamp-3">
-                        {filtered[0].judul}
-                      </h2>
-                      <p className="text-sm text-gray-500 mb-4">
-                        {formatTanggal(filtered[0].createdAt)}
-                      </p>
-                      <p className="text-sm text-gray-600 line-clamp-3">
-                        {(filtered[0].isi_berita || filtered[0].konten || "").substring(0, 200)}...
-                      </p>
-                      <span className="mt-4 text-xs font-bold text-green-700 group-hover:underline">
+                  </div>
+
+                  <div className="p-5 flex flex-col flex-grow">
+                    <p className="text-xs text-gray-400 mb-2">
+                      {formatTanggal(b.createdAt)}
+                    </p>
+                    <h3 className="font-bold text-gray-800 group-hover:text-green-700 transition line-clamp-2 mb-2 text-lg">
+                      {b.judul}
+                    </h3>
+                    <p className="text-sm text-gray-500 line-clamp-3 mb-4">
+                      {(b.isi_berita || b.konten || "").substring(0, 150)}...
+                    </p>
+                    <div className="mt-auto">
+                      <span className="text-xs font-bold text-green-700 group-hover:underline">
                         Baca Selengkapnya →
                       </span>
                     </div>
                   </div>
                 </Link>
-              )}
-
-              {/* Grid berita lainnya */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {(search ? filtered : filtered.slice(1)).map((b) => (
-                  <Link
-                    key={b._id || b.id}
-                    to={`/berita/${b._id || b.id}`}
-                    className="group bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
-                  >
-                    {b.gambar ? (
-                      <img
-                        src={"/" + b.gambar}
-                        alt={b.judul}
-                        className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-44 bg-green-50 flex items-center justify-center text-4xl">
-                      </div>
-                    )}
-                    <div className="p-5">
-                      <p className="text-xs text-gray-400 mb-2">
-                        {formatTanggal(b.createdAt)}
-                      </p>
-                      <h3 className="font-bold text-gray-800 group-hover:text-green-700 transition line-clamp-2 mb-2">
-                        {b.judul}
-                      </h3>
-                      <p className="text-xs text-gray-500 line-clamp-2">
-                        {(b.isi_berita || b.konten || "").substring(0, 120)}...
-                      </p>
-                      <span className="mt-3 inline-block text-xs font-bold text-green-700">
-                        Baca →
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </>
+              ))}
+            </div>
+          </>
           )}
         </div>
       </Container>
